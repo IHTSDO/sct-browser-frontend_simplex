@@ -305,7 +305,7 @@ function conceptDetails(divElement, conceptId, options) {
             }
         }
 
-        if (panel.options.cdfocus === 'members') {
+        if (panel.options.cd1focus === 'members') {
             // Remove 'active' class from all tabs and tab content
             $('#details-tabs-' + panel.divElement.id + ' li').removeClass('active');
             $('#details-tab-content-' + panel.divElement.id + ' .tab-pane').removeClass('in active');

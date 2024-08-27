@@ -1,12 +1,12 @@
 {{#if_eq skipTo 0}}
     <thead>
         <tr>
-            <th><span data-i18n-id="i18n_term" class="i18n">{{i18n "i18n_term" "Term"}}</span></th>
-            {{#if_eq containingTermOnly false}}
+            {{#if_eq containingTermOnly true}}
+                <th><span data-i18n-id="i18n_term" class="i18n">{{i18n "i18n_term" "Term"}}</span></th>
+            {{else}}
                 <th><span data-i18n-id="i18n_preferred_term" class="i18n">{{i18n "i18n_preferred_term" "Preferred Term"}}</span></th>
             {{/if_eq}}
             <th><span data-i18n-id="i18n_conceptId" class="i18n">{{i18n "i18n_conceptId" "Concept Id"}}</span></th>
-            <!-- Dynamically generate table headers for each additional field -->
             {{#if result.items.[0].additionalFields}}
                 {{#each result.items.[0].additionalFields as |value key|}}
                     <th><span class="i18n">{{key}}</span></th>
@@ -33,9 +33,9 @@
                     {{/hasCountryIcon}}
                     <span data-concept-id='{{referencedComponent.conceptId}}' class="member-item" style="cursor: pointer">{{referencedComponent.fsn.term}}</span>
                 </td>            
-                <td>                
+                {{!-- <td>                
                     <span data-concept-id='{{referencedComponent.conceptId}}' class="member-item" style="cursor: pointer">{{referencedComponent.pt.term}}</span>
-                </td>
+                </td> --}}
             {{else}}
                 <td>
                     {{#if_eq referencedComponent.definitionStatus "PRIMITIVE"}}
