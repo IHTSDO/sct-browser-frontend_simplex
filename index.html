@@ -1833,6 +1833,9 @@
             if (QueryString.cdfocus) {
                 options.cdfocus = QueryString.cdfocus;
             }
+            if (QueryString.ecl) {
+                options.ecl = decodeURIComponent(QueryString.ecl);
+            }
             var tpt = new taxonomyPanel(document.getElementById("fh-taxonomy_canvas"), txValue1, options);
             var fav = new favoritePanel(document.getElementById("fh-favorites_canvas"), options);
             var ref = new refsetPanel(document.getElementById("fh-refset_canvas"), options);

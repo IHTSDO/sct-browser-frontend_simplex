@@ -101,7 +101,7 @@
           </div>
         </div>
         <div class="tab-pane active" id="{{divElementId}}-ExpTab" style="padding-left: 15px;padding-right: 15px;padding-bottom: 15px;margin: 0;">
-          <textarea rows="5" ondrop="dropE(event);" class="form-control i18n" placeholder="{{i18n "i18n_expression_constraint" "Expression constraint"}}..." id="{{divElementId}}-ExpText"></textarea>
+          <textarea rows="5" ondrop="dropE(event);" class="form-control i18n" placeholder="{{i18n "i18n_expression_constraint" "Expression constraint"}}..." id="{{divElementId}}-ExpText">{{ ecl }}</textarea>
             <button type="button" id="{{divElemeentId}}-eclBuilderButton" class="btn btn-primary i18n" style="margin-top: 5px; margin-bottom: 10px; margin-right: 10px; position: initial" data-i18n-id="i18n_eclBuilder" onclick="openEclBuilder()">{{i18n "i18n_eclBuilder" "ECL Builder"}}</button>
             <div class="btn btn-success i18n" style="margin-top: 5px; margin-bottom: 10px; margin-right: 10px; position: initial" id='{{divElementId}}-computeInferredButton2' data-i18n-id="i18n_execute">{{i18n "i18n_execute" "Execute"}}</div>
           <br>
