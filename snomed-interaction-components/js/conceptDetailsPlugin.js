@@ -305,6 +305,16 @@ function conceptDetails(divElement, conceptId, options) {
             }
         }
 
+        if (panel.options.cdfocus === 'members') {
+            // Remove 'active' class from all tabs and tab content
+            $('#details-tabs-' + panel.divElement.id + ' li').removeClass('active');
+            $('#details-tab-content-' + panel.divElement.id + ' .tab-pane').removeClass('in active');
+        
+            // Add 'active' class to the 'members' tab and its corresponding content
+            $('#' + panel.divElement.id + '-members-tab').addClass('active');
+            $('#members-' + panel.divElement.id).addClass('in active');
+        }
+
         panel.updateCanvas('');
 
         channel.publish(panel.divElement.id, {

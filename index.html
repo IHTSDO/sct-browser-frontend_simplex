@@ -1592,6 +1592,7 @@
                 "display": "none"
             });
             $("#perspectiveLabel").html("Browsing");
+            
             var tpt = new taxonomyPanel(document.getElementById("bp-taxonomy_canvas"), txValue1, options);
             var spa = new searchPanel(document.getElementById("bp-search_canvas"), options);
             var cdPanel1 = new conceptDetails(document.getElementById("bp-cd1_canvas"), cd1Value, options);
@@ -1829,6 +1830,9 @@
             options.subscribersMarker = false;
             options.linkerButton = false;
             options.disableRefsetsInitialLoad = true;
+            if (QueryString.cdfocus) {
+                options.cdfocus = QueryString.cdfocus;
+            }
             var tpt = new taxonomyPanel(document.getElementById("fh-taxonomy_canvas"), txValue1, options);
             var fav = new favoritePanel(document.getElementById("fh-favorites_canvas"), options);
             var ref = new refsetPanel(document.getElementById("fh-refset_canvas"), options);
