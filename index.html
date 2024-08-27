@@ -1851,6 +1851,10 @@
                 cdPanel1.subscribe(com);
             }
 
+            if (options.ecl) {
+                $('#fh-query_canvas-li a').trigger('click');
+            }
+
             $("#fh-query_canvas-li").show();
 
             options.fhTaxonomyCanvasLoaded = false;
