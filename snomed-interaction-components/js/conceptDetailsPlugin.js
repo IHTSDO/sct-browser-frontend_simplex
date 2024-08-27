@@ -1347,7 +1347,6 @@ function conceptDetails(divElement, conceptId, options) {
                 };
                 $('#product-details-' + panel.divElement.id).html(
                     JST["snomed-interaction-components/views/conceptDetailsPlugin/tabs/product.hbs"](context));
-                console.log(context.productData);
             } else {
                 if ($("#product-details-tab").hasClass("active")) {
                     $('#details-tabs-' + panel.divElement.id + ' a:first').tab('show');
@@ -2558,7 +2557,7 @@ function conceptDetails(divElement, conceptId, options) {
                     }
                 });
             }
-            console.log("containingTermOnly : " + containingTermOnly);
+            // console.log("containingTermOnly : " + containingTermOnly);
             var context = {};
             if (isReferenceComponentsOfRefsetNotConcepts) {
                 context = {
@@ -2605,6 +2604,25 @@ function conceptDetails(divElement, conceptId, options) {
                 else
                     return opts.inverse(this);
             });
+            Handlebars.registerHelper('endsWithId', function (key, options) {
+                if (typeof key === 'string' && key.endsWith('Id')) {
+                    return options.fn(this); // Executes the block if the condition is true
+                }
+                return options.inverse(this); // Executes the else block if the condition is false
+            });
+            Handlebars.registerHelper('isSnomedConceptId', function (value, options) {
+                // Regular expression to match SNOMED CT conceptId pattern:
+                // - Only digits
+                // - At least 6 digits and up to 18 digits
+                // - The two digits before the last should be 00 or 10
+                const snomedConceptIdPattern = /^\d{4,15}(00|10)\d$/;
+                // Check if the value matches the pattern
+                if (snomedConceptIdPattern.test(value)) {
+                    return options.fn(this); // Execute the block if it's a valid conceptId
+                }
+                return options.inverse(this); // Execute the else block if it's not a valid conceptId
+            });
+            
             if (result.total != 0) {
                 $("#" + panel.divElement.id + "-moreMembers").remove();
                 $("#members-" + panel.divElement.id + "-resultsTable").find(".more-row").remove();
@@ -2884,9 +2902,17 @@ function conceptDetails(divElement, conceptId, options) {
         $('#' + elementId).find('.' + className).unbind();
         $('#' + elementId).find('.' + className).click(function(event) {
             var clickedConceptId = $(event.target).attr('data-concept-id');
-            panel.conceptId = clickedConceptId;
-            $('#details-tabs-' + panel.divElement.id + ' a:first').tab('show');
-            panel.updateCanvas('');
+            if (clickedConceptId) {
+                const snomedConceptIdPattern = /^\d{4,15}(00|10)\d$/;
+                // Check if the value matches the pattern
+                if (snomedConceptIdPattern.test(clickedConceptId)) {
+                    panel.conceptId = clickedConceptId;
+                    $('#details-tabs-' + panel.divElement.id + ' a:first').tab('show');
+                    panel.updateCanvas('');
+                } else {
+                    // If the clicked conceptId is not valid do nothing
+                }
+            }
         });
 
     }

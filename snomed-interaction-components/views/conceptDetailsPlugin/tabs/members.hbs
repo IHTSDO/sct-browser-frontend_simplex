@@ -54,7 +54,15 @@
             <td><span data-concept-id='{{referencedComponent.conceptId}}' class="member-item" style="cursor: pointer">{{referencedComponent.conceptId}}</span></td>
             <!-- Dynamically display each additional field -->
             {{#each additionalFields as |value key|}}
-                <td><span class="member-item" style="cursor: pointer">{{value}}</span></td>
+                {{#endsWithId key}}
+                    {{#isSnomedConceptId value}}
+                        <td><span data-concept-id='{{value}}' class="member-item" style="cursor: pointer">{{value}}</span></td>
+                    {{else}}
+                        <td><span>{{value}}</span></td>
+                    {{/isSnomedConceptId}}
+                {{else}}
+                    <td><span>{{value}}</span></td>
+                {{/endsWithId}}
             {{/each}}
 
     {{/each}}
