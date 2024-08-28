@@ -56,7 +56,7 @@
             {{#each additionalFields as |value key|}}
                 {{#endsWithId key}}
                     {{#isSnomedConceptId value}}
-                        <td><span data-concept-id='{{value}}' class="member-item" style="cursor: pointer">{{value}}</span></td>
+                        <td><span data-concept-id='{{value}}' class="member-metadata" style="cursor: pointer">{{value}}</span></td>
                     {{else}}
                         <td><span>{{value}}</span></td>
                     {{/isSnomedConceptId}}

@@ -95,7 +95,12 @@ function searchPanel(divElement, options) {
         "unit of presentation": "unidad de presentación"
       };
 
-    this.setupCanvas = function() {      
+    this.setupCanvas = function() {
+        channel.subscribe('members-clicks', function(data, envelope) {
+            panel.options.searchMode = "partialMatching";
+            panel.search(data.conceptId, 0, 100, false);
+            $('#' + panel.divElement.id + '-searchBox').val(data.term);
+        });     
         var context = {
             divElementId: panel.divElement.id,
             options: panel.options
@@ -657,6 +662,12 @@ function searchPanel(divElement, options) {
             panel.search(searchTerm, 0, 100, true);
         }
     }
+
+    this.runSearch = function(searchTerm) {
+        $('#' + panel.divElement.id + '-searchBox').val(searchTerm);
+        panel.search(searchTerm, 0, 100, true, true);
+    }
+
 
     this.search = function(t, skipTo, returnLimit, forceSearch, skipSemtagFilter, semTags) {
         if (typeof panel.options.searchMode == "undefined") {

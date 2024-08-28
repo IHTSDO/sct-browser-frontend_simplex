@@ -8,10 +8,10 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         clean: ["snomed-interaction-components/dist", "snomed-interaction-components/views/compiled"],
         concat: {
-            options: {
-              separator: ';'
-            },
             js: {
+                options: {
+                    separator: ';',
+                },
                 src: [
                     'snomed-interaction-components/views/compiled/templates.js',
                     'snomed-interaction-components/js/conceptExpressions.js',
@@ -32,6 +32,9 @@ module.exports = function(grunt) {
                 dest: 'snomed-interaction-components/dist/js/internal.js'
             },
             externalJs:{
+                options: {
+                    separator: ';',
+                },
                 src:[
                     'external-libs/jquery-3.3.1.min.js',
                     'external-libs/jquery-ui-1.10.4.custom.min.js',
@@ -62,6 +65,9 @@ module.exports = function(grunt) {
                 dest: 'snomed-interaction-components/dist/js/external.js'
             },
             combinedJs:{
+                options: {
+                    separator: ';',
+                },
                 src:[
                     'snomed-interaction-components/dist/js/external.js',
                     'snomed-interaction-components/dist/js/internal.js'

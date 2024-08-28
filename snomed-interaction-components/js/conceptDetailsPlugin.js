@@ -2663,6 +2663,24 @@ function conceptDetails(divElement, conceptId, options) {
                 }
             }
             panel.applyConceptClickable('members-' + panel.divElement.id, 'member-item');
+            $('#' + 'members-' + panel.divElement.id).find('.' + 'member-metadata').unbind();
+            $('#' + 'members-' + panel.divElement.id).find('.' + 'member-metadata').click(function(event) {
+                var clickedConceptId = $(event.target).attr('data-concept-id');
+                if (clickedConceptId) {
+                    const snomedConceptIdPattern = /^\d{4,15}(00|10)\d$/;
+                    // Check if the value matches the pattern
+                    if (snomedConceptIdPattern.test(clickedConceptId)) {
+                        channel.publish('members-clicks', {
+                            term: clickedConceptId,
+                            conceptId: clickedConceptId,
+                            module: '',
+                            source: panel.divElement.id
+                        });
+                    } else {
+                        // If the clicked conceptId is not valid do nothing
+                    }
+                }
+            });
             panel.panelMembersLoaded = true;
         }).fail(function() {
             $('#members-' + panel.divElement.id + "-resultsTable").html("<tr><td class='text-muted' colspan='2'><span data-i18n-id='i18n_no_members' class='i18n'>"+i18n_no_members+"</span></td></tr>");
