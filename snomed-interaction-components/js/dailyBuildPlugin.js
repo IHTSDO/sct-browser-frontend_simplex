@@ -169,6 +169,8 @@ function dailyBuildPanel(divElement, options) {
             reportsHtml = reportsHtml + "<tr class='selectable-row' data-file='inactivated-synonyms' data-title='Inactivated descriptions(synonym only)'><td>Inactivated descriptions(synonym only)</td><td>" + data.inactivatedSynonymsCount + "</td></tr>";
             reportsHtml = reportsHtml + "<tr class='selectable-row' data-file='new-synonyms-on-existing-concepts' data-title='New descriptions (synonyms only) for existing concepts'><td>New descriptions (synonyms only) for existing concepts</td><td>" + data.newSynonymsForExistingConceptsCount + "</td></tr>";
             reportsHtml = reportsHtml + "<tr class='selectable-row' data-file='reactivated-synonyms' data-title='Reactivated descriptions(synonyms only)'><td>Reactivated descriptions(synonyms only)</td><td>" + data.reactivatedSynonymsCount + "</td></tr>";
+            reportsHtml = reportsHtml + "<tr class='selectable-row' data-file='new-refsets' data-title='New Reference Sets'><td>New Reference Sets</td><td>" + data.newRefsets + "</td></tr>";
+            reportsHtml = reportsHtml + "<tr class='selectable-row' data-file='refsets-with-changed-members' data-title='New Reference Sets'><td>Reference Sets with member changes</td><td>" + data.refsetWithChangedMembers + "</td></tr>";
             reportsHtml = reportsHtml + "</table>";
             $('#' + panel.divElement.id + '-panelBody').html(reportsHtml);
 
@@ -221,12 +223,16 @@ function dailyBuildPanel(divElement, options) {
             });
 
             $('#' + panel.divElement.id + '-panelBody').find('.selectable-row').click(function (event) {
-                channel.publish(panel.divElement.id, {
+                var data = {
                     term: $(event.target).closest('tr').attr('data-term'),
                     conceptId: $(event.target).closest('tr').attr('data-concept-id'),
                     module: $(event.target).closest('tr').attr('data-module'),
                     source: panel.divElement.id
-                });
+                };
+                if (link == 'refsets-with-changed-members') {
+                    data.diffMode = true;
+                }
+                channel.publish(panel.divElement.id, data);
 //                $.each(panel.subscribers, function (i, field) {
 //                    field.conceptId = $(event.target).closest('tr').attr('data-concept-id');
 //                    field.updateCanvas();
