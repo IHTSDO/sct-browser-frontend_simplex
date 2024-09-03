@@ -210,7 +210,6 @@
             } else if (window.location.hostname.includes('browser')) {
                 options.publicBrowser = true;
             } else {
-                // do nothing
             }
 
             if (options.dailyBuildBrowser) {
@@ -1833,6 +1832,9 @@
             if (QueryString.cd1focus) {
                 options.cd1focus = QueryString.cd1focus;
             }
+            if (QueryString.dailyBuildFocus) {
+                options.dailyBuildFocus = QueryString.dailyBuildFocus;
+            }
             if (QueryString.ecl) {
                 options.ecl = decodeURIComponent(QueryString.ecl);
             }
@@ -1904,9 +1906,11 @@
             });
 
             // Focus Search Panel
-            if (typeof focusSearchTab === "undefined" || focusSearchTab) {
+            if ((typeof focusSearchTab === "undefined" || focusSearchTab && !options.dailyBuildFocus)) {
                 $('#fh-tabs li:eq(1) a').tab('show');
                 $('#fh-search_canvas-searchBox').focus();
+            } else {
+                $('#fh-tabs li:eq(4) a').tab('show');
             }
         }
 
