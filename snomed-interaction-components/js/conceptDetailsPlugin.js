@@ -2493,7 +2493,7 @@ function conceptDetails(divElement, conceptId, options) {
             }
         }
         var membersUrl = options.serverUrl + "/" + branch + "/members?referenceSet=" + panel.conceptId + "&limit=100";
-        if (options.diffMode) {
+        if (options.diffMode == true) {
             membersUrl = membersUrl + "&active=true";
         } else {
             membersUrl = membersUrl + "&isNullEffectiveTime=true";
@@ -2571,7 +2571,8 @@ function conceptDetails(divElement, conceptId, options) {
                     total: total,
                     skipTo: 0,
                     referenceComponentsOfRefsetAreNotConcepts: true,
-                    containingTermOnly: containingTermOnly
+                    containingTermOnly: containingTermOnly,
+                    diffMode: options.diffMode
                 };
             }
             else {
@@ -2584,7 +2585,8 @@ function conceptDetails(divElement, conceptId, options) {
                     panel: panel,
                     total: total,
                     referenceComponentsOfRefsetAreNotConcepts: false,
-                    containingTermOnly: containingTermOnly
+                    containingTermOnly: containingTermOnly,
+                    diffMode: options.diffMode
                 };
             }
             Handlebars.registerHelper('if_eq', function(a, b, opts) {
