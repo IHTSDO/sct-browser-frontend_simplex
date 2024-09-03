@@ -2492,7 +2492,12 @@ function conceptDetails(divElement, conceptId, options) {
                 branch = branch + "/" + options.release;
             }
         }
-        var membersUrl = options.serverUrl + "/" + branch + "/members?referenceSet=" + panel.conceptId + "&limit=100&active=true";
+        var membersUrl = options.serverUrl + "/" + branch + "/members?referenceSet=" + panel.conceptId + "&limit=100";
+        if (options.diffMode) {
+            membersUrl = membersUrl + "&active=true";
+        } else {
+            membersUrl = membersUrl + "&isNullEffectiveTime=true";
+        }
         if (skipTo > 0) {
             membersUrl = membersUrl + "&offset=" + skipTo;
         } else {
@@ -2757,7 +2762,7 @@ function conceptDetails(divElement, conceptId, options) {
         if (!alreadySubscribed) {
             var subscription = channel.subscribe(panelId, function(data, envelope) {
                 panel.conceptId = data.conceptId;
-
+                options.diffMode = data.diffMode;
                 // apply for muilti search
                 if (data.branch && data.branch !== options.edition) {
                     var found = false;

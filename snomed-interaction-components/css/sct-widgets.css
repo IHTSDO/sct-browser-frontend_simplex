@@ -24,11 +24,15 @@ and open the template in the editor.
 
 i:active { background-color: #428bca; }
 
-.selectable-row:active { background-color: #428bca; color: white;}
+.selectable-row:active { background-color: #428bca; color: white; cursor: pointer; }
 
 .popover {
     max-width: 800px;
     min-width: 250px;
+}
+
+.inactive {
+    background-color: lightpink;
 }
 
 .jqui-draggable.ui-draggable-dragging {

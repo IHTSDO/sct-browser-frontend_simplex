@@ -17,7 +17,7 @@
 {{/if_eq}}
 <tbody>
     {{#each result.items}}
-        <tr>
+        <tr {{#if_eq referencedComponent.active false}}class="inactive"{{/if_eq}}>
             {{#if_eq ../containingTermOnly false}}
                 <td>                    
                     {{#if_eq referencedComponent.definitionStatus "PRIMITIVE"}}
