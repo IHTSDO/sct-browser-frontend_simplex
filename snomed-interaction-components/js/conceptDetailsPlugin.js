@@ -2669,6 +2669,11 @@ function conceptDetails(divElement, conceptId, options) {
                     $('#members-' + panel.divElement.id + "-resultsTable").html("<tr><td class='text-muted' colspan='2'><span data-i18n-id='i18n_no_members' class='i18n'>"+i18n_no_members+"</span></td></tr>");
                 }
             }
+            $('#' + 'members-' + panel.divElement.id).find('.disableDiffMode').unbind();
+            $('#' + 'members-' + panel.divElement.id).find('.disableDiffMode').click(function() {
+                panel.options.diffMode = false;
+                panel.loadMembers(returnLimit, 0, 1, historyBranch);
+            });
             panel.applyConceptClickable('members-' + panel.divElement.id, 'member-item');
             $('#' + 'members-' + panel.divElement.id).find('.' + 'member-metadata').unbind();
             $('#' + 'members-' + panel.divElement.id).find('.' + 'member-metadata').click(function(event) {
