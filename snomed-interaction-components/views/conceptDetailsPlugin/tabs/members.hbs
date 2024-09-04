@@ -1,8 +1,12 @@
-{{#if_eq diffMode true}}
-    <h4>Viewing Reference Set Members in Diff Mode (only rows with changes)</h4>
-{{/if_eq}}
 {{#if_eq skipTo 0}}
     <thead>
+        {{#if_eq diffMode true}}
+            <tr>
+                <th colspan="3" class="text-center">
+                    <span data-i18n-id="i18n_diff_mode" class="i18n">{{i18n "i18n_diff_mode" "Viewing Reference Set Members in Diff Mode (only rows with changes)"}}</span>
+                </th>
+            </tr>
+        {{/if_eq}}
         <tr>
             {{#if_eq containingTermOnly true}}
                 <th><span data-i18n-id="i18n_term" class="i18n">{{i18n "i18n_term" "Term"}}</span></th>

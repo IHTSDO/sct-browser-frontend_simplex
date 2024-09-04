@@ -2493,7 +2493,7 @@ function conceptDetails(divElement, conceptId, options) {
             }
         }
         var membersUrl = options.serverUrl + "/" + branch + "/members?referenceSet=" + panel.conceptId + "&limit=100";
-        if (options.diffMode == true) {
+        if (options.diffMode != true) {
             membersUrl = membersUrl + "&active=true";
         } else {
             membersUrl = membersUrl + "&isNullEffectiveTime=true";
