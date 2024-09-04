@@ -31,8 +31,8 @@ i:active { background-color: #428bca; }
     min-width: 250px;
 }
 
-.inactive {
-    background-color: lightpink;
+.inactive-row {
+    background-color: #F2DEDE;
 }
 
 .jqui-draggable.ui-draggable-dragging {
