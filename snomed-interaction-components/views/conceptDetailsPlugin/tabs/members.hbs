@@ -71,7 +71,7 @@
                     <td><span>{{value}}</span></td>
                 {{/endsWithId}}
             {{/each}}
-
+        </tr>
     {{/each}}
 
     <tr class="more-row">
@@ -84,7 +84,11 @@
                 </td>
             {{else}}
                 {{#if_eq remaining 0}}
-                    <td class="text-muted" class="text-center" colspan="2">{{total}} <span data-i18n-id="i18n_members" class="i18n">members</span></td>
+                    {{#if_eq diffMode true}}
+                        <td class="text-muted" class="text-center" colspan="2">{{total}} <span data-i18n-id="i18n_members" class="i18n">changes</span></td>
+                    {{else}}
+                        <td class="text-muted" class="text-center" colspan="2">{{total}} <span data-i18n-id="i18n_members" class="i18n">members</span></td>
+                    {{/if_eq}}
                 {{else}}
                     {{#if_gr remaining returnLimit}}
                         <td class="text-center" id="{{divElementId}}-moreMembers" colspan="2">
