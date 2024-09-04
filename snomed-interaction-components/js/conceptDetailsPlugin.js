@@ -2671,7 +2671,7 @@ function conceptDetails(divElement, conceptId, options) {
             }
             $('#' + 'members-' + panel.divElement.id).find('.disableDiffMode').unbind();
             $('#' + 'members-' + panel.divElement.id).find('.disableDiffMode').click(function() {
-                panel.options.diffMode = false;
+                options.diffMode = false;
                 panel.loadMembers(returnLimit, 0, 1, historyBranch);
             });
             panel.applyConceptClickable('members-' + panel.divElement.id, 'member-item');
