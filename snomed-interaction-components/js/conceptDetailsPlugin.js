@@ -2563,10 +2563,12 @@ function conceptDetails(divElement, conceptId, options) {
                 });
             }
             // console.log("containingTermOnly : " + containingTermOnly);
+            // TODO: Send concept info here
             var context = {};
             if (isReferenceComponentsOfRefsetNotConcepts) {
                 context = {
                     result: {'items':[]},
+                    firstMatch: {},
                     divElementId: panel.divElement.id,
                     total: total,
                     skipTo: 0,
@@ -2578,6 +2580,7 @@ function conceptDetails(divElement, conceptId, options) {
             else {
                 context = {
                     result: result,
+                    firstMatch: {},
                     returnLimit: returnLimit2,
                     remaining: remaining,
                     divElementId: panel.divElement.id,

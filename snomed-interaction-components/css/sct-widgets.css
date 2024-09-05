@@ -35,6 +35,13 @@ i:active { background-color: #428bca; }
     background-color: #F2DEDE;
 }
 
+
+.inactive-sign {
+    color: #a94442;
+    font-style: italic;
+    font-weight: bold;
+}
+
 .jqui-draggable.ui-draggable-dragging {
     color: black;
     background: yellow; 
