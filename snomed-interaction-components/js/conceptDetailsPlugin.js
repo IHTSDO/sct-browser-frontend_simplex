@@ -2497,6 +2497,13 @@ function conceptDetails(divElement, conceptId, options) {
             membersUrl = membersUrl + "&active=true";
         } else {
             membersUrl = membersUrl + "&isNullEffectiveTime=true";
+            // Remove 'active' class from all tabs and tab content
+            $('#details-tabs-' + panel.divElement.id + ' li').removeClass('active');
+            $('#details-tab-content-' + panel.divElement.id + ' .tab-pane').removeClass('in active');
+        
+            // Add 'active' class to the 'members' tab and its corresponding content
+            $('#' + panel.divElement.id + '-members-tab').addClass('active');
+            $('#members-' + panel.divElement.id).addClass('in active');
         }
         if (skipTo > 0) {
             membersUrl = membersUrl + "&offset=" + skipTo;
